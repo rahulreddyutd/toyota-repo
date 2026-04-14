@@ -1,0 +1,1049 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OAS Product Portfolio — TMHNA PM Candidate</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Syne:wght@400;600;700;800&family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500;600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* =============================================
+   GLOBAL SHELL
+============================================= */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { height: 100%; }
+body { font-family: 'Plus Jakarta Sans', sans-serif; background: #0d0d14; color: #f0f0f8; overflow: hidden; }
+
+/* =============================================
+   TOP CHROME
+============================================= */
+#shell-nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 9000;
+  height: 54px;
+  background: rgba(10,10,18,0.97);
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  display: flex; align-items: center; padding: 0 24px; gap: 0;
+  backdrop-filter: blur(16px);
+}
+.shell-brand {
+  display: flex; align-items: center; gap: 12px;
+  padding-right: 28px;
+  border-right: 1px solid rgba(255,255,255,0.08);
+  margin-right: 20px;
+  flex-shrink: 0;
+}
+.shell-brand-mark {
+  width: 32px; height: 32px;
+  background: linear-gradient(135deg, #e8ff47, #b8d400);
+  border-radius: 7px;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'IBM Plex Mono', monospace; font-size: 10px; font-weight: 500; color: #0a0a0f;
+  flex-shrink: 0;
+}
+.shell-brand-text { line-height: 1.2; }
+.shell-brand-title { font-size: 13px; font-weight: 700; color: #f0f0f8; letter-spacing: 0.01em; }
+.shell-brand-sub { font-size: 10px; color: rgba(240,240,248,0.4); font-family: 'IBM Plex Mono', monospace; }
+
+.shell-tabs { display: flex; gap: 4px; flex: 1; }
+.shell-tab {
+  display: flex; align-items: center; gap: 8px;
+  padding: 6px 16px; border-radius: 7px; cursor: pointer;
+  font-size: 12px; font-weight: 600; letter-spacing: 0.01em;
+  border: none; background: transparent; color: rgba(240,240,248,0.45);
+  transition: all 0.18s; white-space: nowrap; position: relative;
+}
+.shell-tab:hover { background: rgba(255,255,255,0.06); color: rgba(240,240,248,0.8); }
+.shell-tab.active { background: rgba(255,255,255,0.1); color: #f0f0f8; }
+.shell-tab.active::after {
+  content: ''; position: absolute; bottom: -1px; left: 16px; right: 16px; height: 2px;
+  border-radius: 2px 2px 0 0;
+}
+.tab-num {
+  font-family: 'IBM Plex Mono', monospace; font-size: 9px; font-weight: 500;
+  width: 18px; height: 18px; border-radius: 4px;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+/* Per-tab accent colors */
+.shell-tab[data-tab="home"].active { color: #e8ff47; }
+.shell-tab[data-tab="home"].active::after { background: #e8ff47; }
+.shell-tab[data-tab="home"] .tab-num { background: rgba(232,255,71,0.12); color: #e8ff47; }
+
+.shell-tab[data-tab="p1"].active { color: #47c8ff; }
+.shell-tab[data-tab="p1"].active::after { background: #47c8ff; }
+.shell-tab[data-tab="p1"] .tab-num { background: rgba(71,200,255,0.12); color: #47c8ff; }
+
+.shell-tab[data-tab="p2"].active { color: #7ddc8a; }
+.shell-tab[data-tab="p2"].active::after { background: #7ddc8a; }
+.shell-tab[data-tab="p2"] .tab-num { background: rgba(125,220,138,0.12); color: #7ddc8a; }
+
+.shell-tab[data-tab="p3"].active { color: #c47fff; }
+.shell-tab[data-tab="p3"].active::after { background: #c47fff; }
+.shell-tab[data-tab="p3"] .tab-num { background: rgba(196,127,255,0.12); color: #c47fff; }
+
+.shell-right {
+  margin-left: auto; padding-left: 20px;
+  display: flex; align-items: center; gap: 10px; flex-shrink: 0;
+}
+.shell-badge {
+  font-family: 'IBM Plex Mono', monospace; font-size: 10px; font-weight: 500;
+  padding: 4px 10px; border-radius: 4px;
+  border: 1px solid rgba(255,255,255,0.1); color: rgba(240,240,248,0.4);
+}
+.shell-badge.live {
+  border-color: rgba(45,255,122,0.35); color: #2dff7a;
+  background: rgba(45,255,122,0.06);
+}
+
+/* =============================================
+   PANE CONTAINER
+============================================= */
+#pane-container {
+  position: fixed; top: 54px; left: 0; right: 0; bottom: 0;
+  overflow: hidden;
+}
+.pane {
+  position: absolute; inset: 0;
+  opacity: 0; pointer-events: none;
+  transition: opacity 0.22s ease;
+  overflow-y: auto;
+}
+.pane.active { opacity: 1; pointer-events: all; }
+
+/* =============================================
+   HOME PANE
+============================================= */
+#pane-home {
+  background: #0a0a0f;
+  display: flex; flex-direction: column;
+}
+.home-hero {
+  padding: 64px 64px 48px;
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+}
+.home-eyebrow {
+  font-family: 'IBM Plex Mono', monospace; font-size: 11px; font-weight: 500;
+  color: #e8ff47; text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 20px;
+}
+.home-h1 {
+  font-family: 'Syne', sans-serif; font-size: clamp(36px, 5vw, 60px);
+  font-weight: 800; line-height: 1.04; letter-spacing: -0.025em; margin-bottom: 20px;
+  max-width: 800px;
+}
+.home-h1 em { color: #e8ff47; font-style: normal; }
+.home-desc {
+  font-size: 16px; line-height: 1.7; color: rgba(240,240,248,0.55);
+  max-width: 600px; margin-bottom: 36px;
+}
+.home-meta-row { display: flex; gap: 32px; flex-wrap: wrap; }
+.home-meta-item { display: flex; align-items: center; gap: 8px; font-size: 13px; color: rgba(240,240,248,0.5); }
+.home-meta-dot { width: 6px; height: 6px; border-radius: 50%; background: #e8ff47; flex-shrink: 0; }
+
+.home-projects {
+  padding: 48px 64px;
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+  flex: 1;
+}
+.proj-card {
+  background: #111118; border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 12px; padding: 28px; cursor: pointer;
+  transition: all 0.2s; display: flex; flex-direction: column;
+  position: relative; overflow: hidden;
+}
+.proj-card::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+  opacity: 0; transition: opacity 0.2s;
+}
+.proj-card:hover { border-color: rgba(255,255,255,0.14); transform: translateY(-2px); box-shadow: 0 12px 40px rgba(0,0,0,0.4); }
+.proj-card:hover::before { opacity: 1; }
+.proj-card[data-goto="p1"]::before { background: #47c8ff; }
+.proj-card[data-goto="p2"]::before { background: #7ddc8a; }
+.proj-card[data-goto="p3"]::before { background: #c47fff; }
+
+.pc-num {
+  font-family: 'IBM Plex Mono', monospace; font-size: 10px; font-weight: 500;
+  text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 16px;
+}
+.pc-icon {
+  width: 44px; height: 44px; border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 20px; margin-bottom: 16px; flex-shrink: 0;
+}
+.pc-title {
+  font-family: 'Syne', sans-serif; font-size: 18px; font-weight: 700;
+  margin-bottom: 10px; line-height: 1.2;
+}
+.pc-desc { font-size: 13px; line-height: 1.6; color: rgba(240,240,248,0.5); flex: 1; margin-bottom: 20px; }
+.pc-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 20px; }
+.pc-tag {
+  font-size: 10px; font-family: 'IBM Plex Mono', monospace; font-weight: 500;
+  padding: 3px 8px; border-radius: 4px; border: 1px solid;
+}
+.pc-cta {
+  display: flex; align-items: center; gap: 6px;
+  font-size: 12px; font-weight: 700; margin-top: auto;
+  transition: gap 0.15s;
+}
+.proj-card:hover .pc-cta { gap: 10px; }
+
+/* card accent colors */
+.proj-card[data-goto="p1"] .pc-num { color: #47c8ff; }
+.proj-card[data-goto="p1"] .pc-icon { background: rgba(71,200,255,0.1); }
+.proj-card[data-goto="p1"] .pc-cta { color: #47c8ff; }
+.proj-card[data-goto="p1"] .pc-tag { color: #47c8ff; border-color: rgba(71,200,255,0.25); background: rgba(71,200,255,0.06); }
+
+.proj-card[data-goto="p2"] .pc-num { color: #7ddc8a; }
+.proj-card[data-goto="p2"] .pc-icon { background: rgba(125,220,138,0.1); }
+.proj-card[data-goto="p2"] .pc-cta { color: #7ddc8a; }
+.proj-card[data-goto="p2"] .pc-tag { color: #7ddc8a; border-color: rgba(125,220,138,0.25); background: rgba(125,220,138,0.06); }
+
+.proj-card[data-goto="p3"] .pc-num { color: #c47fff; }
+.proj-card[data-goto="p3"] .pc-icon { background: rgba(196,127,255,0.1); }
+.proj-card[data-goto="p3"] .pc-cta { color: #c47fff; }
+.proj-card[data-goto="p3"] .pc-tag { color: #c47fff; border-color: rgba(196,127,255,0.25); background: rgba(196,127,255,0.06); }
+
+@media (max-width: 900px) {
+  .home-hero { padding: 40px 24px 32px; }
+  .home-projects { grid-template-columns: 1fr; padding: 24px; }
+  .shell-tab span:not(.tab-num) { display: none; }
+  .shell-brand-sub { display: none; }
+}
+
+/* =============================================
+   PROJECT 1 — DARK THEME (Syne + IBM Plex Mono)
+============================================= */
+#pane-p1 {
+  --bg: #0a0a0f;
+  --surface: #111118;
+  --surface2: #18181f;
+  --border: #2a2a35;
+  --accent: #e8ff47;
+  --accent2: #47c8ff;
+  --accent3: #ff6b47;
+  --text: #f0f0f8;
+  --muted: #7070a0;
+  --dim: #404055;
+  background: var(--bg); color: var(--text);
+  font-family: 'Syne', sans-serif;
+}
+#pane-p1 .p1-header {
+  border-bottom: 1px solid var(--border);
+  padding: 18px 40px;
+  display: flex; align-items: center; justify-content: space-between;
+  background: rgba(10,10,15,0.95);
+  position: sticky; top: 0; z-index: 100;
+}
+#pane-p1 .logo { display: flex; align-items: center; gap: 12px; }
+#pane-p1 .logo-mark {
+  width: 34px; height: 34px; background: var(--accent); border-radius: 6px;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'IBM Plex Mono', monospace; font-size: 11px; font-weight: 500; color: #0a0a0f;
+}
+#pane-p1 .logo-text { font-size: 13px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; }
+#pane-p1 .logo-sub { font-size: 10px; color: var(--muted); font-family: 'IBM Plex Mono', monospace; margin-top: 1px; }
+#pane-p1 .p1-badge {
+  font-family: 'IBM Plex Mono', monospace; font-size: 10px;
+  padding: 4px 10px; border-radius: 3px; border: 1px solid var(--border); color: var(--muted);
+}
+#pane-p1 .p1-badge.live { border-color: #2dff7a44; color: #2dff7a; background: #2dff7a0a; }
+
+#pane-p1 .hero {
+  padding: 48px 40px 32px;
+  border-bottom: 1px solid var(--border);
+  display: grid; grid-template-columns: 1fr auto; gap: 40px; align-items: end;
+}
+#pane-p1 .hero h1 { font-size: clamp(28px, 4vw, 46px); font-weight: 800; line-height: 1.05; letter-spacing: -0.02em; }
+#pane-p1 .hero h1 span { color: var(--accent); }
+#pane-p1 .hero p { margin-top: 12px; color: var(--muted); font-size: 14px; line-height: 1.6; max-width: 480px; }
+#pane-p1 .stats-row { display: flex; gap: 28px; }
+#pane-p1 .stat { text-align: right; }
+#pane-p1 .stat-val { font-size: 28px; font-weight: 800; color: var(--accent); }
+#pane-p1 .stat-label { font-size: 10px; color: var(--muted); font-family: 'IBM Plex Mono', monospace; margin-top: 2px; }
+
+#pane-p1 .filters {
+  padding: 16px 40px;
+  display: flex; gap: 10px; align-items: center; flex-wrap: wrap;
+  border-bottom: 1px solid var(--border);
+}
+#pane-p1 .filter-label { font-size: 10px; color: var(--muted); font-family: 'IBM Plex Mono', monospace; margin-right: 4px; }
+#pane-p1 .filter-btn {
+  font-family: 'IBM Plex Mono', monospace; font-size: 10px; font-weight: 500;
+  padding: 5px 12px; border-radius: 3px; cursor: pointer;
+  border: 1px solid var(--border); background: transparent; color: var(--muted); transition: all 0.15s;
+}
+#pane-p1 .filter-btn:hover { border-color: var(--dim); color: var(--text); }
+#pane-p1 .filter-btn.active { border-color: var(--accent); color: var(--accent); background: rgba(232,255,71,0.06); }
+
+#pane-p1 .p1-main { display: grid; grid-template-columns: 1fr 360px; }
+#pane-p1 .table-panel { border-right: 1px solid var(--border); overflow-x: auto; }
+#pane-p1 .side-panel { padding: 20px; }
+
+#pane-p1 table { width: 100%; border-collapse: collapse; }
+#pane-p1 th {
+  text-align: left; font-size: 10px; font-family: 'IBM Plex Mono', monospace;
+  font-weight: 500; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em;
+  padding: 10px 14px; background: var(--surface); border-bottom: 1px solid var(--border);
+  white-space: nowrap; position: sticky; top: 0; z-index: 5;
+}
+#pane-p1 th:first-child { padding-left: 40px; }
+#pane-p1 tr { transition: background 0.1s; cursor: pointer; }
+#pane-p1 tr:hover td { background: var(--surface2); }
+#pane-p1 tr.p1-selected td { background: rgba(232,255,71,0.04); }
+#pane-p1 tr.p1-selected td:first-child { box-shadow: inset 3px 0 0 var(--accent); }
+#pane-p1 td {
+  padding: 14px; font-size: 13px; border-bottom: 1px solid var(--border);
+  transition: background 0.1s; vertical-align: middle;
+}
+#pane-p1 td:first-child { padding-left: 40px; }
+#pane-p1 .company-cell { display: flex; align-items: center; gap: 10px; }
+#pane-p1 .company-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+#pane-p1 .company-name { font-weight: 600; font-size: 13px; }
+#pane-p1 .company-type { font-size: 10px; color: var(--muted); font-family: 'IBM Plex Mono', monospace; margin-top: 1px; }
+#pane-p1 .tech-pill {
+  display: inline-block; font-size: 9px; font-family: 'IBM Plex Mono', monospace;
+  padding: 2px 6px; border-radius: 3px; margin: 2px; border: 1px solid;
+}
+#pane-p1 .pill-lidar { color: var(--accent2); border-color: rgba(71,200,255,0.3); background: rgba(71,200,255,0.06); }
+#pane-p1 .pill-cv { color: var(--accent); border-color: rgba(232,255,71,0.3); background: rgba(232,255,71,0.06); }
+#pane-p1 .pill-uwb { color: var(--accent3); border-color: rgba(255,107,71,0.3); background: rgba(255,107,71,0.06); }
+#pane-p1 .pill-radar { color: #c47fff; border-color: rgba(196,127,255,0.3); background: rgba(196,127,255,0.06); }
+#pane-p1 .score-bar { display: flex; align-items: center; gap: 8px; }
+#pane-p1 .bar-bg { flex: 1; height: 4px; background: var(--dim); border-radius: 2px; max-width: 80px; }
+#pane-p1 .bar-fill { height: 4px; border-radius: 2px; }
+#pane-p1 .score-num { font-family: 'IBM Plex Mono', monospace; font-size: 12px; min-width: 28px; }
+#pane-p1 .threat { font-family: 'IBM Plex Mono', monospace; font-size: 10px; padding: 2px 7px; border-radius: 3px; font-weight: 500; }
+#pane-p1 .threat-h { color: var(--accent3); background: rgba(255,107,71,0.1); border: 1px solid rgba(255,107,71,0.3); }
+#pane-p1 .threat-m { color: var(--accent); background: rgba(232,255,71,0.06); border: 1px solid rgba(232,255,71,0.2); }
+#pane-p1 .threat-l { color: var(--muted); background: rgba(255,255,255,0.04); border: 1px solid var(--border); }
+
+#pane-p1 .side-title { font-size: 10px; font-family: 'IBM Plex Mono', monospace; color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 12px; }
+#pane-p1 .detail-card { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 16px; margin-bottom: 12px; }
+#pane-p1 .detail-name { font-size: 18px; font-weight: 700; margin-bottom: 3px; }
+#pane-p1 .detail-type { font-size: 10px; color: var(--muted); font-family: 'IBM Plex Mono', monospace; margin-bottom: 12px; }
+#pane-p1 .detail-row { display: flex; justify-content: space-between; align-items: center; padding: 7px 0; border-bottom: 1px solid var(--border); }
+#pane-p1 .detail-row:last-child { border-bottom: none; }
+#pane-p1 .detail-key { font-size: 11px; color: var(--muted); }
+#pane-p1 .detail-val { font-size: 11px; font-weight: 600; font-family: 'IBM Plex Mono', monospace; }
+#pane-p1 .swot-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-top: 6px; }
+#pane-p1 .swot-box { padding: 8px; border-radius: 6px; border: 1px solid var(--border); background: var(--surface2); }
+#pane-p1 .swot-label { font-size: 9px; font-family: 'IBM Plex Mono', monospace; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 4px; }
+#pane-p1 .swot-s { color: #2dff7a; }
+#pane-p1 .swot-w { color: var(--accent3); }
+#pane-p1 .swot-o { color: var(--accent2); }
+#pane-p1 .swot-t { color: #c47fff; }
+#pane-p1 .swot-text { font-size: 10px; color: var(--text); line-height: 1.5; }
+
+#pane-p1 .positioning-chart { margin-bottom: 12px; }
+#pane-p1 .chart-area {
+  position: relative; width: 100%; padding-bottom: 90%;
+  background: var(--surface); border: 1px solid var(--border); border-radius: 8px;
+  overflow: hidden; margin-top: 6px;
+}
+#pane-p1 .chart-inner { position: absolute; inset: 0; }
+#pane-p1 .axis-line-h { position: absolute; left: 0; right: 0; top: 50%; height: 1px; background: var(--border); }
+#pane-p1 .axis-line-v { position: absolute; top: 0; bottom: 0; left: 50%; width: 1px; background: var(--border); }
+#pane-p1 .axis-label { position: absolute; font-size: 8px; color: var(--dim); font-family: 'IBM Plex Mono', monospace; }
+#pane-p1 .chart-dot {
+  position: absolute; width: 9px; height: 9px; border-radius: 50%;
+  transform: translate(-50%, -50%); cursor: pointer; transition: transform 0.2s; border: 2px solid;
+}
+#pane-p1 .chart-dot:hover { transform: translate(-50%, -50%) scale(1.7); }
+#pane-p1 .chart-dot-label { position: absolute; font-size: 8px; font-family: 'IBM Plex Mono', monospace; white-space: nowrap; transform: translate(-50%, 8px); }
+#pane-p1 .empty-state { padding: 48px 32px; text-align: center; color: var(--muted); font-size: 13px; }
+
+/* =============================================
+   PROJECT 2 — LIGHT THEME (DM Serif + DM Sans)
+============================================= */
+#pane-p2 {
+  --bg: #f7f5f0; --surface: #ffffff; --surface2: #f0ece4; --border: #e0dbd0;
+  --text: #1a1a14; --muted: #8a8a7a; --dim: #ccc8bc;
+  --accent: #1a4d2e; --accent-light: #e8f5ed;
+  --accent2: #c8401a; --accent2-light: #fdf0ec;
+  --gold: #b8860b; --gold-light: #fdf8e8;
+  background: var(--bg); color: var(--text);
+  font-family: 'DM Sans', sans-serif;
+}
+#pane-p2 .p2-header {
+  background: var(--accent); color: white;
+  padding: 18px 40px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+#pane-p2 .p2-header-brand { display: flex; align-items: center; gap: 14px; }
+#pane-p2 .p2-header-icon {
+  width: 38px; height: 38px; background: rgba(255,255,255,0.15); border-radius: 7px;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'DM Mono', monospace; font-size: 12px; font-weight: 500;
+}
+#pane-p2 .p2-header-title { font-family: 'DM Serif Display', serif; font-size: 20px; font-weight: 400; }
+#pane-p2 .p2-header-sub { font-size: 11px; opacity: 0.7; margin-top: 1px; }
+#pane-p2 .p2-header-tag {
+  font-family: 'DM Mono', monospace; font-size: 10px;
+  border: 1px solid rgba(255,255,255,0.3); padding: 5px 12px; border-radius: 3px; opacity: 0.8;
+}
+
+#pane-p2 .p2-page { max-width: 1100px; margin: 0 auto; padding: 36px 28px; }
+#pane-p2 .p2-intro { margin-bottom: 32px; }
+#pane-p2 .p2-intro h2 { font-family: 'DM Serif Display', serif; font-size: clamp(26px,3.5vw,38px); font-weight: 400; line-height: 1.2; margin-bottom: 10px; }
+#pane-p2 .p2-intro h2 em { color: var(--accent); font-style: italic; }
+#pane-p2 .p2-intro p { color: var(--muted); font-size: 14px; line-height: 1.7; max-width: 580px; }
+#pane-p2 .source-note { font-size: 10px; color: var(--muted); margin-top: 6px; font-family: 'DM Mono', monospace; }
+
+#pane-p2 .p2-layout { display: grid; grid-template-columns: 340px 1fr; gap: 28px; align-items: start; }
+#pane-p2 .inputs-card {
+  background: var(--surface); border: 1px solid var(--border); border-radius: 12px;
+  overflow: hidden; position: sticky; top: 16px;
+}
+#pane-p2 .inputs-header { background: var(--accent); color: white; padding: 14px 20px; font-size: 11px; font-family: 'DM Mono', monospace; letter-spacing: 0.05em; }
+#pane-p2 .input-section { padding: 16px 20px; border-bottom: 1px solid var(--border); }
+#pane-p2 .section-label { font-size: 10px; font-family: 'DM Mono', monospace; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); margin-bottom: 12px; font-weight: 500; }
+#pane-p2 .input-group { margin-bottom: 12px; }
+#pane-p2 .input-group:last-child { margin-bottom: 0; }
+#pane-p2 label { font-size: 12px; font-weight: 500; display: block; margin-bottom: 4px; }
+#pane-p2 .input-hint { font-size: 10px; color: var(--muted); margin-bottom: 5px; font-family: 'DM Mono', monospace; }
+#pane-p2 .input-row { display: flex; align-items: center; gap: 8px; }
+#pane-p2 input[type=range] { flex: 1; accent-color: var(--accent); cursor: pointer; }
+#pane-p2 .input-val { min-width: 72px; text-align: right; font-family: 'DM Mono', monospace; font-size: 12px; font-weight: 500; color: var(--accent); padding: 3px 8px; background: var(--accent-light); border-radius: 4px; }
+#pane-p2 select {
+  width: 100%; font-family: 'DM Sans', sans-serif; font-size: 12px;
+  padding: 7px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--bg); color: var(--text); cursor: pointer;
+  appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%238a8a7a' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat; background-position: right 10px center; padding-right: 28px;
+}
+#pane-p2 .p2-results { display: flex; flex-direction: column; gap: 16px; }
+#pane-p2 .kpi-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+#pane-p2 .kpi-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 20px; }
+#pane-p2 .kpi-card.kpi-primary { background: var(--accent); color: white; border-color: var(--accent); }
+#pane-p2 .kpi-card.kpi-warning { background: var(--accent2-light); border-color: rgba(200,64,26,0.2); }
+#pane-p2 .kpi-label { font-size: 10px; font-family: 'DM Mono', monospace; text-transform: uppercase; letter-spacing: 0.08em; opacity: 0.7; margin-bottom: 6px; }
+#pane-p2 .kpi-val { font-family: 'DM Serif Display', serif; font-size: 30px; font-weight: 400; line-height: 1; }
+#pane-p2 .kpi-card.kpi-primary .kpi-val { color: white; }
+#pane-p2 .kpi-card.kpi-warning .kpi-val { color: var(--accent2); }
+#pane-p2 .kpi-sub { font-size: 11px; margin-top: 4px; opacity: 0.7; }
+#pane-p2 .breakdown-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+#pane-p2 .breakdown-header { padding: 14px 20px; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
+#pane-p2 .breakdown-title { font-weight: 600; font-size: 13px; }
+#pane-p2 .breakdown-row { display: grid; grid-template-columns: 1fr auto auto; gap: 12px; align-items: center; padding: 12px 20px; border-bottom: 1px solid var(--border); transition: background 0.1s; }
+#pane-p2 .breakdown-row:last-child { border-bottom: none; }
+#pane-p2 .breakdown-row:hover { background: var(--bg); }
+#pane-p2 .breakdown-cat { font-size: 12px; font-weight: 500; }
+#pane-p2 .breakdown-desc { font-size: 10px; color: var(--muted); margin-top: 2px; }
+#pane-p2 .breakdown-amount { font-family: 'DM Mono', monospace; font-size: 13px; font-weight: 500; white-space: nowrap; }
+#pane-p2 .breakdown-bar-col { width: 80px; }
+#pane-p2 .bbar-bg { height: 5px; background: var(--border); border-radius: 3px; }
+#pane-p2 .bbar-fill { height: 5px; border-radius: 3px; }
+#pane-p2 .timeline-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 20px; }
+#pane-p2 .timeline-chart { margin-top: 16px; height: 160px; position: relative; }
+#pane-p2 svg.tl-svg { width: 100%; height: 100%; overflow: visible; }
+#pane-p2 .assumptions-card { background: var(--gold-light); border: 1px solid rgba(184,134,11,0.2); border-radius: 12px; padding: 16px 20px; }
+#pane-p2 .assumptions-title { font-size: 11px; font-family: 'DM Mono', monospace; color: var(--gold); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 10px; }
+#pane-p2 .assumption-row { display: flex; justify-content: space-between; padding: 5px 0; border-bottom: 1px solid rgba(184,134,11,0.15); font-size: 11px; }
+#pane-p2 .assumption-row:last-child { border-bottom: none; }
+#pane-p2 .assumption-key { color: var(--muted); }
+#pane-p2 .assumption-val { font-family: 'DM Mono', monospace; font-weight: 500; color: var(--text); }
+#pane-p2 .print-btn {
+  display: flex; align-items: center; gap: 6px; cursor: pointer;
+  font-family: 'DM Mono', monospace; font-size: 11px; font-weight: 500;
+  padding: 7px 14px; border-radius: 6px; border: 1px solid var(--border);
+  background: white; color: var(--text); transition: all 0.15s;
+}
+#pane-p2 .print-btn:hover { background: var(--accent); color: white; border-color: var(--accent); }
+
+/* =============================================
+   PROJECT 3 — LIGHT THEME (Plus Jakarta + JetBrains Mono)
+============================================= */
+#pane-p3 {
+  --bg: #fafafa; --surface: #ffffff; --surface2: #f4f4f6; --border: #e8e8ec;
+  --text: #111114; --muted: #888898; --dim: #d0d0dc;
+  --blue: #2563eb; --blue-l: #eff4ff;
+  --green: #16a34a; --green-l: #f0fdf4;
+  --amber: #d97706; --amber-l: #fffbeb;
+  --purple: #7c3aed; --purple-l: #f5f3ff;
+  --red: #dc2626; --red-l: #fef2f2;
+  --gray: #6b7280; --gray-l: #f9fafb;
+  --q1: #eff4ff; --q2: #f0fdf4; --q3: #fffbeb; --q4: #fdf4ff;
+  --q1b: #2563eb; --q2b: #16a34a; --q3b: #d97706; --q4b: #9333ea;
+  background: var(--bg); color: var(--text);
+  font-family: 'Plus Jakarta Sans', sans-serif; font-size: 14px;
+  display: flex; flex-direction: column;
+}
+#pane-p3 .p3-topnav {
+  height: 50px; background: var(--surface); border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; padding: 0 20px; gap: 0;
+  position: sticky; top: 0; z-index: 200; flex-shrink: 0;
+}
+#pane-p3 .p3-nav-logo { display: flex; align-items: center; gap: 8px; margin-right: 24px; }
+#pane-p3 .p3-nav-logo-icon {
+  width: 28px; height: 28px; background: var(--blue); border-radius: 5px;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'JetBrains Mono', monospace; font-size: 9px; color: white; font-weight: 500;
+}
+#pane-p3 .p3-nav-logo-text { font-size: 13px; font-weight: 700; }
+#pane-p3 .p3-nav-tabs { display: flex; gap: 2px; flex: 1; }
+#pane-p3 .p3-nav-tab {
+  font-size: 12px; font-weight: 500; padding: 5px 12px; border-radius: 6px;
+  cursor: pointer; color: var(--muted); transition: all 0.15s; border: none; background: none;
+}
+#pane-p3 .p3-nav-tab:hover { background: var(--surface2); color: var(--text); }
+#pane-p3 .p3-nav-tab.active { background: var(--blue-l); color: var(--blue); }
+#pane-p3 .p3-nav-right { display: flex; gap: 6px; margin-left: auto; }
+#pane-p3 .p3-nav-btn {
+  font-size: 11px; font-weight: 600; padding: 5px 12px; border-radius: 6px;
+  cursor: pointer; transition: all 0.15s; border: 1px solid var(--border); background: none; color: var(--text);
+}
+#pane-p3 .p3-nav-btn.primary { background: var(--blue); color: white; border-color: var(--blue); }
+
+#pane-p3 .p3-body { display: grid; grid-template-columns: 240px 1fr; flex: 1; overflow: hidden; }
+#pane-p3 .p3-sidebar { border-right: 1px solid var(--border); background: var(--surface); overflow-y: auto; }
+#pane-p3 .p3-main { overflow-y: auto; }
+
+#pane-p3 .sidebar-section { padding: 14px; border-bottom: 1px solid var(--border); }
+#pane-p3 .sidebar-title { font-size: 9px; font-family: 'JetBrains Mono', monospace; font-weight: 500; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); margin-bottom: 10px; }
+#pane-p3 .legend-item { display: flex; align-items: center; gap: 6px; margin-bottom: 6px; }
+#pane-p3 .legend-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+#pane-p3 .legend-label { font-size: 11px; font-weight: 500; }
+#pane-p3 .legend-count { font-size: 10px; color: var(--muted); font-family: 'JetBrains Mono', monospace; margin-left: auto; }
+#pane-p3 .filter-group { margin-bottom: 10px; }
+#pane-p3 .filter-label { font-size: 10px; color: var(--muted); margin-bottom: 5px; }
+#pane-p3 .filter-pills { display: flex; flex-wrap: wrap; gap: 3px; }
+#pane-p3 .fpill {
+  font-size: 10px; font-weight: 500; padding: 2px 7px; border-radius: 4px;
+  cursor: pointer; border: 1px solid var(--border); background: transparent; color: var(--muted); transition: all 0.1s;
+}
+#pane-p3 .fpill:hover { border-color: var(--blue); color: var(--blue); }
+#pane-p3 .fpill.active { background: var(--blue-l); color: var(--blue); border-color: rgba(37,99,235,0.3); }
+#pane-p3 .metric-box { background: var(--surface2); border-radius: 7px; padding: 10px; margin-bottom: 6px; }
+#pane-p3 .metric-box-label { font-size: 9px; color: var(--muted); font-family: 'JetBrains Mono', monospace; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 3px; }
+#pane-p3 .metric-box-val { font-size: 20px; font-weight: 700; }
+#pane-p3 .metric-box-sub { font-size: 10px; color: var(--muted); margin-top: 1px; }
+#pane-p3 .roadmap-header { padding: 16px 20px 0; display: flex; align-items: center; justify-content: space-between; }
+#pane-p3 .roadmap-title { font-size: 16px; font-weight: 700; }
+#pane-p3 .roadmap-sub { font-size: 11px; color: var(--muted); margin-top: 2px; }
+#pane-p3 .quarters-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; padding: 16px 20px; }
+#pane-p3 .quarter-header {
+  font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em;
+  padding: 7px 10px; border-radius: 5px 5px 0 0; border-bottom: 2px solid;
+}
+#pane-p3 .q1h { background: var(--q1); color: var(--q1b); border-color: var(--q1b); }
+#pane-p3 .q2h { background: var(--q2); color: var(--q2b); border-color: var(--q2b); }
+#pane-p3 .q3h { background: var(--q3); color: var(--q3b); border-color: var(--q3b); }
+#pane-p3 .q4h { background: var(--q4); color: var(--q4b); border-color: var(--q4b); }
+#pane-p3 .quarter-body { background: var(--surface2); border-radius: 0 0 7px 7px; padding: 8px; min-height: 160px; }
+#pane-p3 .feature-card {
+  background: white; border: 1px solid var(--border); border-radius: 7px;
+  padding: 10px; margin-bottom: 7px; cursor: pointer; transition: all 0.15s; border-left: 3px solid;
+}
+#pane-p3 .feature-card:hover { box-shadow: 0 2px 8px rgba(0,0,0,0.08); transform: translateY(-1px); }
+#pane-p3 .fc-top { display: flex; align-items: flex-start; gap: 6px; margin-bottom: 5px; }
+#pane-p3 .fc-type { font-size: 9px; font-family: 'JetBrains Mono', monospace; font-weight: 500; padding: 1px 5px; border-radius: 3px; flex-shrink: 0; }
+#pane-p3 .fc-title { font-size: 12px; font-weight: 600; line-height: 1.3; flex: 1; }
+#pane-p3 .fc-owner { font-size: 9px; color: var(--muted); margin-bottom: 5px; font-family: 'JetBrains Mono', monospace; }
+#pane-p3 .fc-bottom { display: flex; align-items: center; gap: 5px; flex-wrap: wrap; }
+#pane-p3 .fc-rice { font-size: 9px; font-family: 'JetBrains Mono', monospace; font-weight: 500; }
+#pane-p3 .fc-status { font-size: 9px; font-weight: 600; padding: 2px 6px; border-radius: 10px; margin-left: auto; }
+#pane-p3 .status-planned { background: var(--gray-l); color: var(--gray); }
+#pane-p3 .status-active { background: var(--blue-l); color: var(--blue); }
+#pane-p3 .status-launched { background: var(--green-l); color: var(--green); }
+#pane-p3 .status-at-risk { background: var(--red-l); color: var(--red); }
+#pane-p3 .list-view { padding: 16px 20px; }
+#pane-p3 .list-table { width: 100%; border-collapse: collapse; }
+#pane-p3 .list-table th { text-align: left; font-size: 10px; font-family: 'JetBrains Mono', monospace; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); padding: 7px 10px; border-bottom: 1px solid var(--border); font-weight: 500; }
+#pane-p3 .list-table td { padding: 10px; border-bottom: 1px solid var(--border); font-size: 12px; }
+#pane-p3 .list-table tr:hover td { background: var(--surface2); cursor: pointer; }
+
+/* P3 Modal */
+#p3-modal-overlay {
+  display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.4);
+  z-index: 9500; align-items: center; justify-content: center;
+}
+#p3-modal-overlay.open { display: flex; }
+#p3-modal {
+  background: white; border-radius: 14px; width: 540px; max-height: 82vh;
+  overflow-y: auto; box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+}
+#pane-p3 .modal-header { padding: 20px 24px 16px; border-bottom: 1px solid var(--border); }
+#pane-p3 .modal-type { font-size: 10px; font-family: 'JetBrains Mono', monospace; font-weight: 500; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 4px; }
+#pane-p3 .modal-title { font-size: 20px; font-weight: 700; line-height: 1.2; }
+#pane-p3 .modal-body { padding: 20px 24px; }
+#pane-p3 .modal-section { margin-bottom: 16px; }
+#pane-p3 .modal-section-label { font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); margin-bottom: 7px; }
+#pane-p3 .modal-desc { font-size: 13px; color: var(--text); line-height: 1.6; }
+#pane-p3 .rice-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 7px; margin-bottom: 7px; }
+#pane-p3 .rice-box { background: var(--surface2); border-radius: 6px; padding: 9px; text-align: center; }
+#pane-p3 .rice-label { font-size: 9px; color: var(--muted); font-family: 'JetBrains Mono', monospace; margin-bottom: 3px; }
+#pane-p3 .rice-val { font-size: 16px; font-weight: 700; }
+#pane-p3 .rice-score-row { display: flex; justify-content: space-between; align-items: center; padding: 9px; background: var(--blue-l); border-radius: 6px; }
+#pane-p3 .rice-score-label { font-size: 11px; color: var(--blue); font-weight: 600; }
+#pane-p3 .rice-score-val { font-size: 18px; font-weight: 800; color: var(--blue); font-family: 'JetBrains Mono', monospace; }
+#pane-p3 .detail-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 7px; }
+#pane-p3 .detail-item { background: var(--surface2); border-radius: 6px; padding: 9px; }
+#pane-p3 .detail-item-label { font-size: 9px; color: var(--muted); font-family: 'JetBrains Mono', monospace; margin-bottom: 3px; }
+#pane-p3 .detail-item-val { font-size: 12px; font-weight: 600; }
+#pane-p3 .dep-tag { display: inline-flex; align-items: center; gap: 3px; font-size: 10px; padding: 2px 7px; background: var(--surface2); border-radius: 4px; margin: 2px; }
+#pane-p3 .modal-footer { padding: 14px 24px; border-top: 1px solid var(--border); display: flex; justify-content: flex-end; }
+#pane-p3 .modal-close { font-size: 12px; font-weight: 600; padding: 7px 18px; border-radius: 7px; border: 1px solid var(--border); background: none; cursor: pointer; }
+</style>
+</head>
+<body>
+
+<!-- ============ SHELL NAV ============ -->
+<nav id="shell-nav">
+  <div class="shell-brand">
+    <div class="shell-brand-mark">PM</div>
+    <div class="shell-brand-text">
+      <div class="shell-brand-title">OAS Portfolio</div>
+      <div class="shell-brand-sub">TMHNA · Product Manager Candidate</div>
+    </div>
+  </div>
+  <div class="shell-tabs">
+    <button class="shell-tab active" data-tab="home" onclick="switchPane('home',this)">
+      <span class="tab-num">⌂</span><span>Overview</span>
+    </button>
+    <button class="shell-tab" data-tab="p1" onclick="switchPane('p1',this)">
+      <span class="tab-num">01</span><span>Competitive Intel</span>
+    </button>
+    <button class="shell-tab" data-tab="p2" onclick="switchPane('p2',this)">
+      <span class="tab-num">02</span><span>ROI Calculator</span>
+    </button>
+    <button class="shell-tab" data-tab="p3" onclick="switchPane('p3',this)">
+      <span class="tab-num">03</span><span>Product Roadmap</span>
+    </button>
+  </div>
+  <div class="shell-right">
+    <div class="shell-badge">Q2 2025</div>
+    <div class="shell-badge live">● Live</div>
+  </div>
+</nav>
+
+<!-- ============ PANE CONTAINER ============ -->
+<div id="pane-container">
+
+  <!-- HOME -->
+  <div class="pane active" id="pane-home">
+    <div class="home-hero">
+      <div class="home-eyebrow">// OAS Product Management · Portfolio</div>
+      <h1 class="home-h1">Three tools.<br>One <em>PM thesis.</em></h1>
+      <p class="home-desc">
+        This portfolio demonstrates product strategy, financial modeling, competitive intelligence, and roadmap planning for Operator Assist Systems — the core competencies of the TMHNA OAS Product Manager role.
+      </p>
+      <div class="home-meta-row">
+        <div class="home-meta-item"><div class="home-meta-dot"></div>Forklift industry context throughout</div>
+        <div class="home-meta-item"><div class="home-meta-dot"></div>Real OSHA & MHI data sources</div>
+        <div class="home-meta-item"><div class="home-meta-dot"></div>12 competitors tracked · 12 OAS features · Full RICE scoring</div>
+      </div>
+    </div>
+    <div class="home-projects">
+      <div class="proj-card" data-goto="p1" onclick="switchPane('p1', document.querySelector('[data-tab=p1]'))">
+        <div class="pc-num">// 01 — Competitive Intelligence</div>
+        <div class="pc-icon">📊</div>
+        <div class="pc-title">OAS Market Intelligence Dashboard</div>
+        <p class="pc-desc">Tracks 12 competitors across forklift OEMs, ADAS suppliers, and software platforms. Filter by segment, view SWOT analyses, and explore a positioning map of feature depth vs. price premium.</p>
+        <div class="pc-tags">
+          <span class="pc-tag">Market analysis</span>
+          <span class="pc-tag">Competitive pricing</span>
+          <span class="pc-tag">Brand positioning</span>
+          <span class="pc-tag">SWOT</span>
+        </div>
+        <div class="pc-cta">Open dashboard →</div>
+      </div>
+      <div class="proj-card" data-goto="p2" onclick="switchPane('p2', document.querySelector('[data-tab=p2]'))">
+        <div class="pc-num">// 02 — Financial Modeling</div>
+        <div class="pc-icon">💰</div>
+        <div class="pc-title">OAS ROI & TCO Calculator</div>
+        <p class="pc-desc">Sales enablement tool modeling incident cost avoidance, insurance savings, throughput gains, and downtime reduction against OAS investment. Outputs 5-year NPV and payback period.</p>
+        <div class="pc-tags">
+          <span class="pc-tag">ROI modeling</span>
+          <span class="pc-tag">TCO analysis</span>
+          <span class="pc-tag">Value proposition</span>
+          <span class="pc-tag">Sales tools</span>
+        </div>
+        <div class="pc-cta">Open calculator →</div>
+      </div>
+      <div class="proj-card" data-goto="p3" onclick="switchPane('p3', document.querySelector('[data-tab=p3]'))">
+        <div class="pc-num">// 03 — Strategic Planning</div>
+        <div class="pc-icon">🗺️</div>
+        <div class="pc-title">OAS Product Roadmap Planner</div>
+        <p class="pc-desc">FY2025 roadmap with 12 OAS features across swimlane, list, and RICE-score views. Each feature includes market rationale, owner team, dependencies, and target customer segment.</p>
+        <div class="pc-tags">
+          <span class="pc-tag">Roadmap planning</span>
+          <span class="pc-tag">RICE scoring</span>
+          <span class="pc-tag">Lifecycle mgmt</span>
+          <span class="pc-tag">Cross-functional</span>
+        </div>
+        <div class="pc-cta">Open roadmap →</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROJECT 1 -->
+  <div class="pane" id="pane-p1">
+    <div class="p1-header">
+      <div class="logo">
+        <div class="logo-mark">OAS</div>
+        <div><div class="logo-text">Competitive Intel</div><div class="logo-sub">Operator Assist Systems — Market Tracker</div></div>
+      </div>
+      <div style="display:flex;gap:8px">
+        <div class="p1-badge">Q2 2025</div>
+        <div class="p1-badge live">● Live</div>
+      </div>
+    </div>
+    <div class="hero">
+      <div>
+        <h1>OAS Market<br><span>Intelligence</span><br>Dashboard</h1>
+        <p>Tracking perception & localization technology adoption across forklift OEMs and industrial ADAS suppliers. Updated quarterly with pricing, feature depth, and competitive threat assessment.</p>
+      </div>
+      <div class="stats-row">
+        <div class="stat"><div class="stat-val" id="p1-stat-companies">12</div><div class="stat-label">competitors<br>tracked</div></div>
+        <div class="stat"><div class="stat-val">4</div><div class="stat-label">tech<br>categories</div></div>
+        <div class="stat"><div class="stat-val" id="p1-stat-threat">3</div><div class="stat-label">high-threat<br>players</div></div>
+      </div>
+    </div>
+    <div class="filters">
+      <span class="filter-label">FILTER:</span>
+      <button class="filter-btn active" onclick="p1SetFilter('all',this)">All segments</button>
+      <button class="filter-btn" onclick="p1SetFilter('OEM',this)">Forklift OEMs</button>
+      <button class="filter-btn" onclick="p1SetFilter('ADAS',this)">ADAS / Sensor</button>
+      <button class="filter-btn" onclick="p1SetFilter('Software',this)">Software / AI</button>
+      <span style="margin-left:auto;font-size:10px;color:var(--muted);font-family:'IBM Plex Mono',monospace;">Click any row for detail →</span>
+    </div>
+    <div class="p1-main">
+      <div class="table-panel">
+        <table><thead><tr>
+          <th>Company</th><th>Technologies</th><th>Feature Depth</th><th>Est. Price Range</th><th>Market Reach</th><th>Threat Level</th>
+        </tr></thead><tbody id="p1-table-body"></tbody></table>
+      </div>
+      <div class="side-panel">
+        <div class="side-title">// Company Detail</div>
+        <div id="p1-detail-pane"><div class="empty-state"><div style="font-size:28px;margin-bottom:10px">⬅</div>Select a competitor to view SWOT analysis</div></div>
+        <div class="positioning-chart">
+          <div class="side-title" style="margin-top:14px">// Positioning map</div>
+          <div class="chart-area"><div class="chart-inner">
+            <div class="axis-line-h"></div><div class="axis-line-v"></div>
+            <div class="axis-label" style="bottom:5px;left:3px">← Basic</div>
+            <div class="axis-label" style="bottom:5px;right:3px">Advanced →</div>
+            <div class="axis-label" style="top:5px;left:3px;writing-mode:vertical-rl;transform:rotate(180deg)">Premium ↑</div>
+            <div id="p1-chart-dots"></div>
+          </div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROJECT 2 -->
+  <div class="pane" id="pane-p2">
+    <div class="p2-header">
+      <div class="p2-header-brand">
+        <div class="p2-header-icon">ROI</div>
+        <div><div class="p2-header-title">OAS Value Calculator</div><div class="p2-header-sub">Operator Assist Systems · Return on Investment & Total Cost of Ownership</div></div>
+      </div>
+      <div class="p2-header-tag">TMHNA Sales Enablement Tool</div>
+    </div>
+    <div class="p2-page">
+      <div class="p2-intro">
+        <h2>How much does <em>not deploying</em><br>OAS actually cost you?</h2>
+        <p>Configure your fleet parameters to model the financial impact of operator assist systems — including accident reduction, throughput gains, and insurance savings — against total deployment cost.</p>
+        <div class="source-note">// Data sources: OSHA forklift incident statistics · NSC Liberty Mutual Workplace Safety Index · MHI Annual Industry Report · Bureau of Labor Statistics</div>
+      </div>
+      <div class="p2-layout">
+        <div class="inputs-card">
+          <div class="inputs-header">// Fleet & Operations Parameters</div>
+          <div class="input-section">
+            <div class="section-label">01 · Fleet Size</div>
+            <div class="input-group"><label>Number of powered industrial trucks</label><div class="input-hint">Industry avg: 28 trucks per facility</div><div class="input-row"><input type="range" id="p2-fleet-size" min="1" max="200" value="25" oninput="p2Recalc()"><div class="input-val" id="p2-val-fleet">25 trucks</div></div></div>
+            <div class="input-group"><label>Operating shifts per day</label><div class="input-row"><input type="range" id="p2-shifts" min="1" max="3" value="2" oninput="p2Recalc()"><div class="input-val" id="p2-val-shifts">2 shifts</div></div></div>
+            <div class="input-group"><label>Operating days per year</label><div class="input-row"><input type="range" id="p2-op-days" min="200" max="365" value="250" oninput="p2Recalc()"><div class="input-val" id="p2-val-days">250 days</div></div></div>
+          </div>
+          <div class="input-section">
+            <div class="section-label">02 · Safety Baseline</div>
+            <div class="input-group"><label>Annual incidents (near-miss or contact)</label><div class="input-hint">OSHA avg: 1 incident per 6–8 trucks/yr</div><div class="input-row"><input type="range" id="p2-incidents" min="0" max="50" value="5" oninput="p2Recalc()"><div class="input-val" id="p2-val-incidents">5 / yr</div></div></div>
+            <div class="input-group"><label>Average cost per incident</label><div class="input-hint">OSHA: avg forklift incident = $38,000</div><div class="input-row"><input type="range" id="p2-incident-cost" min="5000" max="150000" step="1000" value="38000" oninput="p2Recalc()"><div class="input-val" id="p2-val-incident-cost">$38K</div></div></div>
+            <div class="input-group"><label>Workers' comp / insurance (annual)</label><div class="input-row"><input type="range" id="p2-insurance" min="10000" max="500000" step="5000" value="85000" oninput="p2Recalc()"><div class="input-val" id="p2-val-insurance">$85K</div></div></div>
+          </div>
+          <div class="input-section">
+            <div class="section-label">03 · Productivity</div>
+            <div class="input-group"><label>Operator hourly fully-loaded cost</label><div class="input-row"><input type="range" id="p2-op-cost" min="20" max="80" value="42" oninput="p2Recalc()"><div class="input-val" id="p2-val-op-cost">$42/hr</div></div></div>
+            <div class="input-group"><label>Downtime hours per truck per year</label><div class="input-hint">Avg: 8–12 hrs unplanned downtime/truck/yr</div><div class="input-row"><input type="range" id="p2-downtime" min="0" max="80" value="10" oninput="p2Recalc()"><div class="input-val" id="p2-val-downtime">10 hrs</div></div></div>
+          </div>
+          <div class="input-section" style="border:none">
+            <div class="section-label">04 · OAS Investment</div>
+            <div class="input-group"><label>OAS system tier</label>
+              <select id="p2-oas-tier" onchange="p2Recalc()">
+                <option value="entry">Entry — Speed limiting + proximity alert ($8K/truck)</option>
+                <option value="mid" selected>Mid — LiDAR + CV obstacle detection ($18K/truck)</option>
+                <option value="full">Full — LiDAR + CV + UWB zone mgmt ($28K/truck)</option>
+              </select>
+            </div>
+            <div class="input-group"><label>OAS incident reduction rate</label><div class="input-hint">Studies show 60–85% reduction with full OAS</div><div class="input-row"><input type="range" id="p2-reduction" min="30" max="90" value="72" oninput="p2Recalc()"><div class="input-val" id="p2-val-reduction">72%</div></div></div>
+          </div>
+        </div>
+        <div class="p2-results" id="p2-results"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROJECT 3 -->
+  <div class="pane" id="pane-p3">
+    <nav class="p3-topnav">
+      <div class="p3-nav-logo"><div class="p3-nav-logo-icon">OAS</div><div class="p3-nav-logo-text">Roadmap</div></div>
+      <div class="p3-nav-tabs">
+        <button class="p3-nav-tab active" onclick="p3SwitchTab('roadmap',this)">Swimlane view</button>
+        <button class="p3-nav-tab" onclick="p3SwitchTab('list',this)">Feature list</button>
+        <button class="p3-nav-tab" onclick="p3SwitchTab('rice',this)">RICE scores</button>
+      </div>
+      <div class="p3-nav-right">
+        <button class="p3-nav-btn primary">+ Add feature</button>
+      </div>
+    </nav>
+    <div class="p3-body">
+      <div class="p3-sidebar">
+        <div class="sidebar-section">
+          <div class="sidebar-title">Metrics</div>
+          <div class="metric-box"><div class="metric-box-label">Total features</div><div class="metric-box-val" id="p3-m-total">0</div><div class="metric-box-sub">across 4 quarters</div></div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px">
+            <div class="metric-box"><div class="metric-box-label">Launched</div><div class="metric-box-val" style="color:var(--green);font-size:16px" id="p3-m-launched">0</div></div>
+            <div class="metric-box"><div class="metric-box-label">In flight</div><div class="metric-box-val" style="color:var(--blue);font-size:16px" id="p3-m-active">0</div></div>
+          </div>
+        </div>
+        <div class="sidebar-section"><div class="sidebar-title">By type</div><div id="p3-legend-items"></div></div>
+        <div class="sidebar-section">
+          <div class="sidebar-title">Filters</div>
+          <div class="filter-group"><div class="filter-label">Owner team</div><div class="filter-pills" id="p3-owner-pills"></div></div>
+          <div class="filter-group"><div class="filter-label">Status</div><div class="filter-pills" id="p3-status-pills"></div></div>
+        </div>
+      </div>
+      <div class="p3-main">
+        <div id="p3-view-roadmap">
+          <div class="roadmap-header"><div><div class="roadmap-title">OAS Product Roadmap · FY 2025</div><div class="roadmap-sub">Toyota Material Handling North America · Operator Assist Systems</div></div></div>
+          <div class="quarters-grid" id="p3-quarters-grid"></div>
+        </div>
+        <div id="p3-view-list" style="display:none"><div class="list-view"><table class="list-table"><thead><tr><th>Feature</th><th>Type</th><th>Quarter</th><th>Owner</th><th>RICE</th><th>Status</th></tr></thead><tbody id="p3-list-tbody"></tbody></table></div></div>
+        <div id="p3-view-rice" style="display:none"><div class="list-view">
+          <div style="margin-bottom:12px;font-size:12px;color:var(--muted);line-height:1.6;max-width:560px"><strong style="color:var(--text)">RICE = (Reach × Impact × Confidence) ÷ Effort.</strong> Higher scores = more users reached, greater impact, higher confidence, less effort.</div>
+          <table class="list-table"><thead><tr><th>Feature</th><th>Reach</th><th>Impact</th><th>Confidence</th><th>Effort</th><th>RICE Score</th><th>Priority</th></tr></thead><tbody id="p3-rice-tbody"></tbody></table>
+        </div></div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /pane-container -->
+
+<!-- P3 MODAL (outside pane so z-index works correctly) -->
+<div id="p3-modal-overlay" onclick="p3CloseModal(event)">
+  <div id="p3-modal"></div>
+</div>
+
+<script>
+/* ============================================
+   SHELL NAVIGATION
+============================================ */
+function switchPane(id, btn) {
+  document.querySelectorAll('.pane').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.shell-tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('pane-' + id).classList.add('active');
+  btn.classList.add('active');
+  if (id === 'p2' && !window._p2init) { p2Recalc(); window._p2init = true; }
+  if (id === 'p3' && !window._p3init) { p3RenderAll(); window._p3init = true; }
+  if (id === 'p1' && !window._p1init) { p1RenderTable(); window._p1init = true; }
+}
+
+/* ============================================
+   PROJECT 1 — COMPETITIVE INTEL
+============================================ */
+const p1Competitors = [
+  { name:"Jungheinrich", type:"OEM", segment:"OEM", color:"#e8ff47", dotX:72, dotY:30, tech:["lidar","cv","uwb"], featureScore:85, priceRange:"$18K–$32K", marketReach:"Global", threat:"high", description:"European leader with deep OAS integration. Their Logistics Interface System pairs UWB zone management with LiDAR obstacle detection natively in the truck OS.", swot:{s:"Native OAS integration, strong EU regulatory compliance",w:"Limited NA dealer network vs Toyota",o:"ESG fleet mandates driving OAS demand",t:"TMHNA brand loyalty in NA market"}, details:{HQ:"Hamburg, DE", Founded:"1953","NA Share":"~8%","OAS Launch":"2019"}},
+  { name:"Crown Equipment", type:"OEM", segment:"OEM", color:"#47c8ff", dotX:60, dotY:42, tech:["lidar","cv"], featureScore:78, priceRange:"$15K–$28K", marketReach:"North America", threat:"high", description:"Crown's InfoLink + QuickPick Remote system is the most widely deployed OAS ecosystem in NA warehousing. Strong dealer network is a direct channel threat.", swot:{s:"Largest NA dealer network, proven QuickPick platform",w:"No UWB offering; CV-only limits precision in dense environments",o:"Retrofit market for existing Crown fleets",t:"Toyota's Toyota Production System efficiency advantages"}, details:{HQ:"New Bremen, OH", Founded:"1945","NA Share":"~22%","OAS Launch":"2017"}},
+  { name:"Hyster-Yale", type:"OEM", segment:"OEM", color:"#ff6b47", dotX:48, dotY:55, tech:["lidar","radar"], featureScore:64, priceRange:"$12K–$22K", marketReach:"North America", threat:"medium", description:"Hyster-Yale's Tracker system uses radar + LiDAR fusion. Positioned below Crown on features but competitive on price. Growing fleet telematics integration.", swot:{s:"Competitive pricing, strong telematics data play",w:"Radar-only limits fine obstacle detection accuracy",o:"Price-sensitive mid-market segment largely underserved",t:"Crown and Toyota outspending on R&D"}, details:{HQ:"Cleveland, OH", Founded:"1929","NA Share":"~14%","OAS Launch":"2020"}},
+  { name:"Sick AG", type:"ADAS", segment:"ADAS", color:"#c47fff", dotX:80, dotY:18, tech:["lidar","cv"], featureScore:92, priceRange:"$8K–$18K (module)", marketReach:"Global (B2B)", threat:"medium", description:"Best-in-class LiDAR sensor supplier to multiple OEMs including Jungheinrich. Sick's microScan3 is the industry reference for safety-rated field detection.", swot:{s:"SIL2/PLd safety certification, OEM-grade reliability",w:"Sells components not solutions; no fleet software play",o:"Retrofit aftermarket for legacy fleets",t:"OEMs may in-house sensor development long-term"}, details:{HQ:"Waldkirch, DE", Founded:"1946","NA Share":"N/A (supplier)","OAS Launch":"2015"}},
+  { name:"Cognex", type:"ADAS", segment:"ADAS", color:"#47c8ff", dotX:65, dotY:25, tech:["cv"], featureScore:80, priceRange:"$4K–$12K (module)", marketReach:"Global (B2B)", threat:"low", description:"Leading machine vision supplier. Cognex's barcode reading and vision inspection is embedded in many WMS integrations. Potential OAS adjacency through pallet detection.", swot:{s:"Best CV accuracy in industry, WMS integration depth",w:"No proximity/spatial awareness; pure vision play",o:"Inventory accuracy use cases expanding OAS scope",t:"Camera-only solutions losing to sensor fusion competitors"}, details:{HQ:"Natick, MA", Founded:"1981","NA Share":"N/A (supplier)","OAS Launch":"2021"}},
+  { name:"Seegrid", type:"Software", segment:"Software", color:"#e8ff47", dotX:85, dotY:22, tech:["lidar","cv"], featureScore:88, priceRange:"$25K–$45K", marketReach:"North America", threat:"high", description:"Seegrid's Palion platform bridges OAS and AMR autonomy. Their guided vehicle platform is the most direct competitive overlap with TMHNA's OAS roadmap.", swot:{s:"First-mover in vision-guided vehicles; strong VC funding",w:"High cost limits SME penetration; complex deployment",o:"Labor shortage driving urgency for automation",t:"Toyota's scale and service network in NA"}, details:{HQ:"Pittsburgh, PA", Founded:"2003","NA Share":"~3%","OAS Launch":"2016"}},
+  { name:"Linde MH", type:"OEM", segment:"OEM", color:"#2dff7a", dotX:70, dotY:35, tech:["lidar","cv","uwb"], featureScore:82, priceRange:"$16K–$30K", marketReach:"Global", threat:"medium", description:"Linde's Roadster Assist suite uses sensor fusion. Strong in EU, growing NA presence through KION Group. Their fleet data platform is a differentiator.", swot:{s:"KION Group R&D resources; strong fleet analytics",w:"Limited NA service infrastructure",o:"US infrastructure investment creating new warehouse builds",t:"Raymond/Toyota NA brand dominance"}, details:{HQ:"Aschaffenburg, DE", Founded:"1904","NA Share":"~6%","OAS Launch":"2020"}},
+  { name:"Zebra Technologies", type:"Software", segment:"Software", color:"#c47fff", dotX:55, dotY:40, tech:["uwb","cv"], featureScore:70, priceRange:"$6K–$15K", marketReach:"Global (B2B)", threat:"medium", description:"Zebra's MotionWorks platform provides UWB-based real-time location for forklifts and personnel. A partner-ecosystem threat — could enable third-party OAS on any truck brand.", swot:{s:"Ecosystem approach enables cross-OEM deployment",w:"Hardware-agnostic means no OAS-specific optimization",o:"Brownfield retrofit market is massive and underserved",t:"OEMs bundling native telematics to lock out third parties"}, details:{HQ:"Lincolnshire, IL", Founded:"1969","NA Share":"N/A (software)","OAS Launch":"2018"}},
+  { name:"Mitsubishi Logisnext", type:"OEM", segment:"OEM", color:"#ff6b47", dotX:40, dotY:60, tech:["lidar"], featureScore:55, priceRange:"$10K–$18K", marketReach:"Global", threat:"low", description:"Mitsubishi's OAS offering lags peers. Basic LiDAR collision avoidance without fleet software integration. Represents a gap opportunity for OAS-led competitive positioning.", swot:{s:"Strong brand in Asia Pacific markets",w:"OAS feature depth well behind Toyota and Crown",o:"Customers seeking OAS upgrades are at-risk accounts to win",t:"May accelerate OAS investment to close gap"}, details:{HQ:"Tokyo, JP", Founded:"1937","NA Share":"~5%","OAS Launch":"2022"}},
+  { name:"STILL GmbH", type:"OEM", segment:"OEM", color:"#47c8ff", dotX:62, dotY:38, tech:["lidar","uwb"], featureScore:74, priceRange:"$14K–$26K", marketReach:"Europe", threat:"low", description:"STILL's iGo Neo collaborative robot/forklift hybrid uses LiDAR + UWB. Primarily EU-focused but KION ownership creates cross-pollination risk with Linde.", swot:{s:"Innovative collaborative autonomy approach",w:"Minimal NA distribution; EU regulatory framework dependency",o:"EU autonomy mandates could accelerate design language for NA",t:"Low NA brand awareness limits short-term threat"}, details:{HQ:"Hamburg, DE", Founded:"1920","NA Share":"<1%","OAS Launch":"2019"}},
+  { name:"Würth Industrie", type:"Software", segment:"Software", color:"#e8ff47", dotX:35, dotY:50, tech:["uwb"], featureScore:45, priceRange:"$3K–$8K", marketReach:"Europe", threat:"low", description:"UWB-only vendor focused on zone management and personnel alerting. Limited feature scope but low-cost entry creates price anchoring risk in budget-sensitive segments.", swot:{s:"Very low price point for basic zone alerting",w:"UWB-only limits obstacle detection capabilities",o:"Entry point for customers not ready for full OAS investment",t:"Full-suite OAS solutions outclass on feature depth"}, details:{HQ:"Bad Mergentheim, DE", Founded:"1945","NA Share":"<1%","OAS Launch":"2021"}},
+  { name:"Daifuku", type:"Software", segment:"Software", color:"#2dff7a", dotX:88, dotY:15, tech:["lidar","cv","uwb","radar"], featureScore:95, priceRange:"$40K–$80K", marketReach:"Global", threat:"medium", description:"Daifuku's warehouse automation suite includes OAS as part of a broader WMS+conveyor+AGV platform. Threat is in large greenfield projects where bundled automation displaces individual OEMs.", swot:{s:"Full-stack automation: WMS, OAS, AGV, conveyor in one",w:"Price point excludes SME and mid-market; 12–18mo deployment",o:"Megawarehouse build-out trend in NA ecommerce",t:"Toyota's relationships with 3PL and distribution clients"}, details:{HQ:"Osaka, JP", Founded:"1937","NA Share":"N/A (integrator)","OAS Launch":"2014"}},
+];
+let p1ActiveFilter = 'all', p1SelectedIdx = null;
+function p1SetFilter(f, btn) { p1ActiveFilter = f; document.querySelectorAll('#pane-p1 .filter-btn').forEach(b => b.classList.remove('active')); btn.classList.add('active'); p1RenderTable(); }
+function p1GetFiltered() { return p1ActiveFilter === 'all' ? p1Competitors : p1Competitors.filter(c => c.segment === p1ActiveFilter); }
+function p1RenderTable() {
+  const filtered = p1GetFiltered();
+  document.getElementById('p1-stat-companies').textContent = filtered.length;
+  document.getElementById('p1-stat-threat').textContent = filtered.filter(c=>c.threat==='high').length;
+  const tMap = {lidar:'pill-lidar',cv:'pill-cv',uwb:'pill-uwb',radar:'pill-radar'};
+  const thrMap = {high:'threat-h',medium:'threat-m',low:'threat-l'};
+  document.getElementById('p1-table-body').innerHTML = filtered.map(c => {
+    const gi = p1Competitors.indexOf(c);
+    const pills = c.tech.map(t => `<span class="tech-pill ${tMap[t]}">${t.toUpperCase()}</span>`).join('');
+    const bc = c.featureScore > 80 ? '#e8ff47' : c.featureScore > 60 ? '#47c8ff' : '#7070a0';
+    return `<tr class="${p1SelectedIdx===gi?'p1-selected':''}" onclick="p1SelectCompany(${gi})">
+      <td><div class="company-cell"><div class="company-dot" style="background:${c.color}"></div><div><div class="company-name">${c.name}</div><div class="company-type">${c.type}</div></div></div></td>
+      <td>${pills}</td>
+      <td><div class="score-bar"><div class="bar-bg"><div class="bar-fill" style="width:${c.featureScore}%;background:${bc}"></div></div><span class="score-num" style="color:${bc}">${c.featureScore}</span></div></td>
+      <td style="font-family:'IBM Plex Mono',monospace;font-size:11px">${c.priceRange}</td>
+      <td style="font-size:11px;color:var(--muted)">${c.marketReach}</td>
+      <td><span class="threat ${thrMap[c.threat]}">${c.threat.toUpperCase()}</span></td>
+    </tr>`;
+  }).join('');
+  p1RenderChart();
+}
+function p1SelectCompany(idx) {
+  p1SelectedIdx = idx; const c = p1Competitors[idx]; p1RenderTable();
+  const rows = Object.entries(c.details).map(([k,v]) => `<div class="detail-row"><span class="detail-key">${k}</span><span class="detail-val">${v}</span></div>`).join('');
+  const thrCls = {high:'threat-h',medium:'threat-m',low:'threat-l'}[c.threat];
+  document.getElementById('p1-detail-pane').innerHTML = `
+    <div class="detail-card">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px">
+        <div><div class="detail-name" style="color:${c.color}">${c.name}</div><div class="detail-type">${c.type} · ${c.segment}</div></div>
+        <span class="threat ${thrCls}">${c.threat.toUpperCase()}</span>
+      </div>
+      <p style="font-size:11px;color:var(--muted);line-height:1.6;margin-bottom:12px">${c.description}</p>
+      ${rows}
+    </div>
+    <div class="detail-card">
+      <div class="side-title" style="margin-bottom:10px">// SWOT snapshot</div>
+      <div class="swot-grid">
+        <div class="swot-box"><div class="swot-label swot-s">Strengths</div><div class="swot-text">${c.swot.s}</div></div>
+        <div class="swot-box"><div class="swot-label swot-w">Weaknesses</div><div class="swot-text">${c.swot.w}</div></div>
+        <div class="swot-box"><div class="swot-label swot-o">Opportunities</div><div class="swot-text">${c.swot.o}</div></div>
+        <div class="swot-box"><div class="swot-label swot-t">Threats (to us)</div><div class="swot-text">${c.swot.t}</div></div>
+      </div>
+    </div>`;
+}
+function p1RenderChart() {
+  document.getElementById('p1-chart-dots').innerHTML = p1Competitors.map((c,i) => {
+    const sel = p1SelectedIdx === i;
+    return `<div class="chart-dot" style="left:${c.dotX}%;top:${c.dotY}%;background:${sel?c.color:'transparent'};border-color:${c.color};${sel?'transform:translate(-50%,-50%) scale(1.8)':''}" onclick="p1SelectCompany(${i})" title="${c.name}">
+      <div class="chart-dot-label" style="color:${c.color};${sel?'font-weight:600':''}">${c.name.split(' ')[0]}</div>
+    </div>`;
+  }).join('');
+}
+p1RenderTable(); window._p1init = true;
+
+/* ============================================
+   PROJECT 2 — ROI CALCULATOR
+============================================ */
+function p2Fmt(n) { if(n>=1e6) return '$'+(n/1e6).toFixed(2)+'M'; if(n>=1000) return '$'+Math.round(n/1000)+'K'; return '$'+Math.round(n); }
+const p2TierCosts = {entry:8000,mid:18000,full:28000};
+const p2TierMaint = {entry:0.08,mid:0.10,full:0.12};
+function p2Recalc() {
+  const fleet=+document.getElementById('p2-fleet-size').value, shifts=+document.getElementById('p2-shifts').value, opDays=+document.getElementById('p2-op-days').value;
+  const incidents=+document.getElementById('p2-incidents').value, iCost=+document.getElementById('p2-incident-cost').value, insurance=+document.getElementById('p2-insurance').value;
+  const opCost=+document.getElementById('p2-op-cost').value, downtime=+document.getElementById('p2-downtime').value;
+  const tier=document.getElementById('p2-oas-tier').value, reduction=+document.getElementById('p2-reduction').value/100;
+  document.getElementById('p2-val-fleet').textContent=fleet+' trucks';
+  document.getElementById('p2-val-shifts').textContent=shifts+' shift'+(shifts>1?'s':'');
+  document.getElementById('p2-val-days').textContent=opDays+' days';
+  document.getElementById('p2-val-incidents').textContent=incidents+' / yr';
+  document.getElementById('p2-val-incident-cost').textContent=p2Fmt(iCost);
+  document.getElementById('p2-val-insurance').textContent=p2Fmt(insurance);
+  document.getElementById('p2-val-op-cost').textContent='$'+opCost+'/hr';
+  document.getElementById('p2-val-downtime').textContent=downtime+' hrs';
+  document.getElementById('p2-val-reduction').textContent=Math.round(reduction*100)+'%';
+  const iLoss=incidents*iCost, dtLoss=fleet*downtime*opCost, totalWithout=iLoss+insurance+dtLoss;
+  const capex=fleet*p2TierCosts[tier], maint=capex*p2TierMaint[tier], totalInv=capex+fleet*1200+fleet*400;
+  const iSav=iLoss*reduction, insSav=insurance*(reduction*0.55), dtSav=dtLoss*0.35, thru=fleet*opDays*shifts*8*opCost*0.028;
+  const grossSav=iSav+insSav+dtSav+thru, netSav=grossSav-maint, payback=totalInv/netSav;
+  const npv5=-totalInv+[1,2,3,4,5].reduce((a,yr)=>a+netSav/Math.pow(1.08,yr),0);
+  const cfs=[]; for(let yr=0;yr<=5;yr++) cfs.push(yr===0?-totalInv:yr*netSav-totalInv);
+  const mnCF=Math.min(...cfs), mxCF=Math.max(...cfs), rng=mxCF-mnCF;
+  const sW=460,sH=150,pad={l:55,r:15,t:15,b:25}; const cW=sW-pad.l-pad.r,cH=sH-pad.t-pad.b;
+  const zY=pad.t+cH*(mxCF/rng);
+  const pts=cfs.map((v,i)=>({x:pad.l+(i/5)*cW,y:pad.t+cH*((mxCF-v)/rng),v}));
+  const poly=pts.map(p=>`${p.x},${p.y}`).join(' ');
+  const area=`M${pts[0].x},${zY} ${pts.map(p=>`L${p.x},${p.y}`).join(' ')} L${pts[pts.length-1].x},${zY} Z`;
+  const bxLine=payback<=5?`<line x1="${pad.l+(payback/5)*cW}" y1="${pad.t}" x2="${pad.l+(payback/5)*cW}" y2="${pad.t+cH}" stroke="#1a4d2e" stroke-width="1" stroke-dasharray="4 3"/><text x="${pad.l+(payback/5)*cW+3}" y="${pad.t+10}" font-size="9" fill="#1a4d2e" font-family="DM Mono,monospace">Breakeven</text>`:'';
+  const yLbls=[mxCF,mxCF/2,0,mnCF/2,mnCF].map((v,i)=>{const y=pad.t+cH*(i/4); return `<text x="${pad.l-4}" y="${y+4}" font-size="8" fill="#8a8a7a" font-family="DM Mono,monospace" text-anchor="end">${p2Fmt(v)}</text><line x1="${pad.l}" y1="${y}" x2="${pad.l+cW}" y2="${y}" stroke="#e0dbd0" stroke-width="0.5"/>`;}).join('');
+  const xLbls=cfs.map((v,i)=>{const x=pad.l+(i/5)*cW; return `<text x="${x}" y="${pad.t+cH+15}" font-size="8" fill="#8a8a7a" font-family="DM Mono,monospace" text-anchor="middle">Yr ${i}</text>`;}).join('');
+  const dots=pts.map(p=>`<circle cx="${p.x}" cy="${p.y}" r="3.5" fill="${p.v>=0?'#1a4d2e':'#c8401a'}" stroke="white" stroke-width="1.5"/>`).join('');
+  const bd=[{cat:'Incident cost avoidance',desc:`${Math.round(reduction*100)}% reduction on ${incidents} incidents`,amount:iSav,color:'#1a4d2e',pct:iSav/grossSav},{cat:'Insurance premium reduction',desc:`Est. ${Math.round(reduction*55)}% workers comp savings`,amount:insSav,color:'#2d7a4d',pct:insSav/grossSav},{cat:'Downtime elimination',desc:'35% collision-caused downtime reduction',amount:dtSav,color:'#47c88a',pct:dtSav/grossSav},{cat:'Throughput efficiency gain',desc:'2.8% efficiency improvement (MHI)',amount:thru,color:'#a0e0c0',pct:thru/grossSav}];
+  const bRows=bd.map(r=>`<div class="breakdown-row"><div><div class="breakdown-cat">${r.cat}</div><div class="breakdown-desc">${r.desc}</div></div><div class="breakdown-bar-col"><div class="bbar-bg"><div class="bbar-fill" style="width:${Math.round(r.pct*100)}%;background:${r.color}"></div></div></div><div class="breakdown-amount" style="color:${r.color}">${p2Fmt(r.amount)}/yr</div></div>`).join('');
+  document.getElementById('p2-results').innerHTML = `
+    <div class="kpi-grid">
+      <div class="kpi-card kpi-primary"><div class="kpi-label">Annual savings with OAS</div><div class="kpi-val">${p2Fmt(netSav)}</div><div class="kpi-sub">net of maintenance costs</div></div>
+      <div class="kpi-card" style="border-color:rgba(26,77,46,0.2);background:var(--accent-light)"><div class="kpi-label">5-Year NPV (8% discount)</div><div class="kpi-val" style="color:var(--accent)">${p2Fmt(npv5)}</div><div class="kpi-sub">total value created</div></div>
+      <div class="kpi-card kpi-warning"><div class="kpi-label">Cost without OAS (annual)</div><div class="kpi-val">${p2Fmt(totalWithout)}</div><div class="kpi-sub">incident + insurance + downtime</div></div>
+      <div class="kpi-card"><div class="kpi-label">Payback period</div><div class="kpi-val">${payback<10?payback.toFixed(1)+' yrs':'>10 yrs'}</div><div class="kpi-sub">total investment: ${p2Fmt(totalInv)}</div></div>
+    </div>
+    <div class="breakdown-card"><div class="breakdown-header"><div class="breakdown-title">Annual savings breakdown</div><div style="font-family:'DM Mono',monospace;font-size:11px;color:var(--muted)">${p2Fmt(grossSav)}/yr gross</div></div><div>${bRows}</div></div>
+    <div class="timeline-card">
+      <div style="display:flex;justify-content:space-between;align-items:center"><div style="font-weight:600;font-size:13px">5-Year cumulative cashflow</div><button class="print-btn" onclick="window.print()">⬇ Save as PDF</button></div>
+      <div class="timeline-chart"><svg class="tl-svg" viewBox="0 0 ${sW} ${sH}">${yLbls}${xLbls}<defs><linearGradient id="p2ag" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#1a4d2e" stop-opacity="0.15"/><stop offset="100%" stop-color="#1a4d2e" stop-opacity="0.02"/></linearGradient></defs><path d="${area}" fill="url(#p2ag)"/><polyline points="${poly}" fill="none" stroke="#1a4d2e" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/><line x1="${pad.l}" y1="${zY}" x2="${pad.l+cW}" y2="${zY}" stroke="#e0dbd0" stroke-width="1"/>${bxLine}${dots}</svg></div>
+    </div>
+    <div class="assumptions-card"><div class="assumptions-title">// Calculation assumptions & sources</div>
+      <div class="assumption-row"><span class="assumption-key">Incident reduction rate</span><span class="assumption-val">${Math.round(reduction*100)}% (user-configured)</span></div>
+      <div class="assumption-row"><span class="assumption-key">Insurance savings multiplier</span><span class="assumption-val">55% of incident reduction → premium reduction</span></div>
+      <div class="assumption-row"><span class="assumption-key">Throughput efficiency gain</span><span class="assumption-val">2.8% per MHI Annual Industry Report 2024</span></div>
+      <div class="assumption-row"><span class="assumption-key">NPV discount rate</span><span class="assumption-val">8% (industrial equipment benchmark)</span></div>
+      <div class="assumption-row"><span class="assumption-key">OSHA incident cost source</span><span class="assumption-val">Liberty Mutual WSI 2024 · $38K avg forklift incident</span></div>
+    </div>`;
+}
+p2Recalc(); window._p2init = true;
+
+/* ============================================
+   PROJECT 3 — ROADMAP
+============================================ */
+const p3TypeMeta = {'Perception':{color:'#2563eb',bg:'#eff4ff'},'Localization':{color:'#7c3aed',bg:'#f5f3ff'},'Fleet Software':{color:'#16a34a',bg:'#f0fdf4'},'Safety Compliance':{color:'#dc2626',bg:'#fef2f2'},'UX / Operator':{color:'#d97706',bg:'#fffbeb'},'Telematics':{color:'#0891b2',bg:'#ecfeff'}};
+const p3StatusMeta = {'launched':{label:'Launched',cls:'status-launched'},'active':{label:'In flight',cls:'status-active'},'planned':{label:'Planned',cls:'status-planned'},'at-risk':{label:'At risk',cls:'status-at-risk'}};
+const p3Features = [
+  {id:1,quarter:'Q1',title:'LiDAR obstacle detection v2.0',type:'Perception',owner:'Engineering',status:'launched',reach:9,impact:3,confidence:90,effort:8,desc:'Upgrade obstacle detection algorithm to reduce false-positive rate from 12% to <3%. Introduces multi-return LiDAR processing and dynamic object classification to distinguish personnel from racking.',deps:['Firmware v4.2','Sensor calibration SW'],market:'Addresses top dealer complaint. Closes gap with Jungheinrich microScan3 accuracy.',target:'All reach trucks, order pickers — 100% of fleet'},
+  {id:2,quarter:'Q1',title:'Speed-by-zone enforcement',type:'Safety Compliance',owner:'Engineering',status:'launched',reach:10,impact:2,confidence:95,effort:3,desc:'Automatic speed reduction when truck enters predefined zones. Configurable by site managers via fleet portal.',deps:['UWB anchor network','Fleet Portal v3'],market:'OSHA compliance enabler. Cited in 3 lost deals as required feature.',target:'All powered trucks with UWB'},
+  {id:3,quarter:'Q1',title:'Operator alert dashboard',type:'UX / Operator',owner:'Product + Design',status:'active',reach:8,impact:2,confidence:80,effort:4,desc:'Real-time operator-facing HMI showing proximity alerts, speed limit warnings, and zone status.',deps:['Display hardware v2','CAN bus integration'],market:'Operator adoption driver. Reduces alert fatigue that causes bypass behavior.',target:'All trucks with OAS package'},
+  {id:4,quarter:'Q2',title:'Computer vision pallet detection',type:'Perception',owner:'Engineering',status:'active',reach:7,impact:3,confidence:75,effort:12,desc:'AI-powered pallet face detection using onboard camera. Enables automatic fork height/tilt optimization. Trained on 250K+ annotated warehouse images.',deps:['Edge AI compute module','Camera v2 hardware'],market:'Directly competes with Crown QuickPick Remote. Estimated 15% cycle time improvement.',target:'Reach trucks, counterbalance — high-volume SKU picking environments'},
+  {id:5,quarter:'Q2',title:'UWB personnel detection & alert',type:'Localization',owner:'Engineering',status:'planned',reach:9,impact:3,confidence:85,effort:6,desc:'UWB-based real-time personnel localization with predictive collision warning. Detects tagged workers within 15m radius. Sub-30cm accuracy.',deps:['UWB v2 anchor FW','Worker badge program'],market:'Zebra MotionWorks direct counter. Keeps detection native to truck vs 3rd-party.',target:'Sites with worker badge program — initially 3PL and automotive customers'},
+  {id:6,quarter:'Q2',title:'Fleet analytics portal — OAS module',type:'Fleet Software',owner:'Product + Engineering',status:'planned',reach:8,impact:2,confidence:90,effort:5,desc:'Add OAS event data layer to existing fleet analytics portal. Track near-miss frequency, intervention rates, operator compliance scores.',deps:['Fleet Portal v3.2','Telematics data pipeline v2'],market:'Supports executive ROI reporting. Directly enables ROI conversation with fleet managers.',target:'Fleet managers, safety directors — enterprise accounts 10+ trucks'},
+  {id:7,quarter:'Q3',title:'Autonomous intersection management',type:'Localization',owner:'Engineering + Safety',status:'planned',reach:6,impact:3,confidence:60,effort:16,desc:'Truck-to-truck communication at blind intersections using UWB mesh. First truck broadcasts approach; approaching trucks auto-reduce speed.',deps:['UWB mesh protocol','V2V firmware','Safety validation'],market:'Differentiator — no OEM offers this. Potential regulatory advantage in OSHA VGP update.',target:'High-traffic distribution centers — cross-dock and fulfillment center use cases'},
+  {id:8,quarter:'Q3',title:'OAS retrofit kit — legacy fleet',type:'Perception',owner:'Engineering + Sales',status:'planned',reach:10,impact:2,confidence:70,effort:10,desc:'Standalone OAS retrofit package for non-OAS trucks. LiDAR sensor + edge compute + CAN adapter. Dealer-installable in <4 hours.',deps:['Universal CAN adapter','Retrofit LiDAR housing','Dealer certification program'],market:'Opens $200M+ brownfield market. Converts competitor fleets to TMHNA ecosystem.',target:'Sites with mixed fleets or legacy TMHNA trucks without OAS'},
+  {id:9,quarter:'Q3',title:'Predictive maintenance via OAS data',type:'Telematics',owner:'Engineering + Product',status:'planned',reach:7,impact:2,confidence:65,effort:8,desc:'Use OAS sensor data (vibration, load cycles, collision events) to predict maintenance needs. Targets 20% reduction in unplanned downtime.',deps:['Telematics v3','ML model pipeline','Parts inventory API'],market:'Differentiates against pure-play OAS vendors who lack truck lifecycle data.',target:'Fleet managers and service teams — enterprise contracts with full-service agreements'},
+  {id:10,quarter:'Q4',title:'AI-powered site mapping & zone config',type:'Fleet Software',owner:'Product + Engineering',status:'planned',reach:7,impact:3,confidence:55,effort:14,desc:'Automated site map generation using LiDAR SLAM during initial deployment. Auto-suggests speed zones, pedestrian corridors. Reduces setup from 3 days to 4 hours.',deps:['SLAM algorithm','Zone config portal','LiDAR mapping mode'],market:'Eliminates biggest friction in OAS deployment. Enables SME market entry.',target:'New site deployments — all verticals, focus on food & bev and e-commerce'},
+  {id:11,quarter:'Q4',title:'OAS API & third-party WMS integration',type:'Fleet Software',owner:'Engineering + Sales',status:'planned',reach:6,impact:2,confidence:70,effort:9,desc:'Publish OAS data via REST API. Pre-built connectors for SAP EWM, Manhattan Associates, and Blue Yonder WMS.',deps:['API gateway v2','OAuth 2.0 auth layer','WMS connector library'],market:'Required for enterprise procurement — 80% of enterprise RFPs require WMS integration.',target:'Enterprise accounts (>50 trucks) with existing WMS investment'},
+  {id:12,quarter:'Q4',title:'Operator certification gamification',type:'UX / Operator',owner:'Product + Marketing',status:'planned',reach:8,impact:1,confidence:80,effort:5,desc:'In-cab operator training module with OAS-enabled scoring. Tracks near-misses, speed compliance, zone adherence. Gamified leaderboard per site.',deps:['HMI display v2','Fleet analytics portal'],market:'Reduces operator bypass behavior (est. 40% of OAS disengagement). Supports safety culture sell.',target:'All OAS-equipped trucks with operator login'},
+];
+let p3ActiveOwner='all', p3ActiveStatus='all', p3ActiveView='roadmap';
+const p3Owners=['all',...new Set(p3Features.map(f=>f.owner))];
+const p3Statuses=['all','launched','active','planned','at-risk'];
+function p3Rice(f){return Math.round((f.reach*f.impact*f.confidence)/f.effort);}
+function p3GetFiltered(){return p3Features.filter(f=>(p3ActiveOwner==='all'||f.owner===p3ActiveOwner)&&(p3ActiveStatus==='all'||f.status===p3ActiveStatus));}
+function p3SwitchTab(v,btn){p3ActiveView=v;document.querySelectorAll('.p3-nav-tab').forEach(b=>b.classList.remove('active'));btn.classList.add('active');document.getElementById('p3-view-roadmap').style.display=v==='roadmap'?'':'none';document.getElementById('p3-view-list').style.display=v==='list'?'':'none';document.getElementById('p3-view-rice').style.display=v==='rice'?'':'none';p3RenderAll();}
+function p3RenderAll(){const f=p3GetFiltered();p3RenderMetrics(f);p3RenderLegend(f);p3RenderRoadmap(f);p3RenderList(f);p3RenderRice(f);p3RenderPills();}
+function p3RenderMetrics(f){document.getElementById('p3-m-total').textContent=f.length;document.getElementById('p3-m-launched').textContent=f.filter(x=>x.status==='launched').length;document.getElementById('p3-m-active').textContent=f.filter(x=>x.status==='active').length;}
+function p3RenderLegend(f){const counts={};f.forEach(x=>{counts[x.type]=(counts[x.type]||0)+1;});document.getElementById('p3-legend-items').innerHTML=Object.entries(p3TypeMeta).map(([t,m])=>`<div class="legend-item"><div class="legend-dot" style="background:${m.color}"></div><span class="legend-label">${t}</span><span class="legend-count">${counts[t]||0}</span></div>`).join('');}
+function p3RenderPills(){document.getElementById('p3-owner-pills').innerHTML=p3Owners.map(o=>`<button class="fpill ${p3ActiveOwner===o?'active':''}" onclick="p3SetOwner('${o}')">${o==='all'?'All':o.split(' ')[0]}</button>`).join('');document.getElementById('p3-status-pills').innerHTML=p3Statuses.map(s=>`<button class="fpill ${p3ActiveStatus===s?'active':''}" onclick="p3SetStatus('${s}')">${s==='all'?'All':p3StatusMeta[s]?.label||s}</button>`).join('');}
+function p3SetOwner(o){p3ActiveOwner=o;p3RenderAll();}
+function p3SetStatus(s){p3ActiveStatus=s;p3RenderAll();}
+function p3RenderRoadmap(filtered){
+  const qMap={Q1:'q1h',Q2:'q2h',Q3:'q3h',Q4:'q4h'};const qNames={Q1:'Q1 2025 — Jan–Mar',Q2:'Q2 2025 — Apr–Jun',Q3:'Q3 2025 — Jul–Sep',Q4:'Q4 2025 — Oct–Dec'};
+  document.getElementById('p3-quarters-grid').innerHTML=['Q1','Q2','Q3','Q4'].map(q=>{
+    const cards=filtered.filter(f=>f.quarter===q).map(f=>{
+      const tm=p3TypeMeta[f.type],sm=p3StatusMeta[f.status];
+      return `<div class="feature-card" style="border-left-color:${tm.color}" onclick="p3OpenModal(${f.id})"><div class="fc-top"><span class="fc-type" style="color:${tm.color};background:${tm.bg}">${f.type}</span></div><div class="fc-title">${f.title}</div><div class="fc-owner">${f.owner}</div><div class="fc-bottom"><span class="fc-rice" style="color:var(--muted)">RICE: ${p3Rice(f)}</span><span class="fc-status ${sm.cls}">${sm.label}</span></div></div>`;
+    }).join('');
+    return `<div><div class="quarter-header ${qMap[q]}">${qNames[q]}</div><div class="quarter-body">${cards||'<div style="padding:16px;text-align:center;color:var(--dim);font-size:11px">No features</div>'}</div></div>`;
+  }).join('');
+}
+function p3RenderList(filtered){document.getElementById('p3-list-tbody').innerHTML=filtered.map(f=>{const tm=p3TypeMeta[f.type],sm=p3StatusMeta[f.status];return `<tr onclick="p3OpenModal(${f.id})"><td style="font-weight:600">${f.title}</td><td><span style="font-size:10px;padding:2px 6px;border-radius:4px;background:${tm.bg};color:${tm.color};font-weight:500">${f.type}</span></td><td style="font-family:'JetBrains Mono',monospace;font-size:11px">${f.quarter} 2025</td><td style="font-size:11px;color:var(--muted)">${f.owner}</td><td style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:600">${p3Rice(f)}</td><td><span class="fc-status ${sm.cls}">${sm.label}</span></td></tr>`;}).join('');}
+function p3RenderRice(filtered){const sorted=[...filtered].sort((a,b)=>p3Rice(b)-p3Rice(a));const mx=p3Rice(sorted[0])||1;document.getElementById('p3-rice-tbody').innerHTML=sorted.map((f,i)=>{const score=p3Rice(f),pct=Math.round(score/mx*100),rc=i===0?'#d97706':i===1?'#6b7280':i===2?'#92400e':'var(--text)';return `<tr onclick="p3OpenModal(${f.id})"><td style="font-weight:600">${f.title}</td><td style="font-family:'JetBrains Mono',monospace;font-size:11px">${f.reach}</td><td style="font-family:'JetBrains Mono',monospace;font-size:11px">${f.impact}</td><td style="font-family:'JetBrains Mono',monospace;font-size:11px">${f.confidence}%</td><td style="font-family:'JetBrains Mono',monospace;font-size:11px">${f.effort}</td><td><div style="display:flex;align-items:center;gap:7px"><div style="flex:1;height:5px;background:var(--border);border-radius:3px;max-width:70px"><div style="height:5px;border-radius:3px;background:var(--blue);width:${pct}%"></div></div><span style="font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700;color:${rc}">${score}</span></div></td><td style="font-weight:700;color:${rc}">#${i+1}</td></tr>`;}).join('');}
+function p3OpenModal(id){
+  const f=p3Features.find(x=>x.id===id); if(!f) return;
+  const tm=p3TypeMeta[f.type],sm=p3StatusMeta[f.status],score=p3Rice(f);
+  document.getElementById('p3-modal').innerHTML=`
+    <div class="modal-header"><div class="modal-type" style="color:${tm.color}">${f.type} · ${f.quarter} 2025</div><div class="modal-title">${f.title}</div></div>
+    <div class="modal-body">
+      <div class="modal-section"><div class="modal-section-label">Description</div><div class="modal-desc">${f.desc}</div></div>
+      <div class="modal-section"><div class="modal-section-label">RICE Prioritization Score</div>
+        <div class="rice-grid"><div class="rice-box"><div class="rice-label">Reach</div><div class="rice-val">${f.reach}</div></div><div class="rice-box"><div class="rice-label">Impact</div><div class="rice-val">${f.impact}</div></div><div class="rice-box"><div class="rice-label">Confidence</div><div class="rice-val">${f.confidence}%</div></div><div class="rice-box"><div class="rice-label">Effort</div><div class="rice-val">${f.effort} wks</div></div></div>
+        <div class="rice-score-row"><span class="rice-score-label">RICE = (${f.reach} × ${f.impact} × ${f.confidence}) ÷ ${f.effort}</span><span class="rice-score-val">${score}</span></div>
+      </div>
+      <div class="modal-section"><div class="modal-section-label">Details</div>
+        <div class="detail-grid"><div class="detail-item"><div class="detail-item-label">Owner team</div><div class="detail-item-val">${f.owner}</div></div><div class="detail-item"><div class="detail-item-label">Status</div><div class="detail-item-val"><span class="fc-status ${sm.cls}">${sm.label}</span></div></div><div class="detail-item" style="grid-column:span 2"><div class="detail-item-label">Target segment</div><div class="detail-item-val">${f.target}</div></div></div>
+      </div>
+      <div class="modal-section"><div class="modal-section-label">Market rationale</div><div class="modal-desc">${f.market}</div></div>
+      <div class="modal-section"><div class="modal-section-label">Dependencies</div><div>${f.deps.map(d=>`<span class="dep-tag">🔗 ${d}</span>`).join('')}</div></div>
+    </div>
+    <div class="modal-footer"><button class="modal-close" onclick="document.getElementById('p3-modal-overlay').classList.remove('open')">Close</button></div>`;
+  document.getElementById('p3-modal-overlay').classList.add('open');
+}
+function p3CloseModal(e){if(e.target===document.getElementById('p3-modal-overlay'))document.getElementById('p3-modal-overlay').classList.remove('open');}
+p3RenderAll(); window._p3init = true;
+</script>
+</body>
+</html>
