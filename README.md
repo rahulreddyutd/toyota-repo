@@ -2,8 +2,6 @@
 
 Three tools I built to demonstrate how I think about the Operator Assist Systems PM role at TMHNA.
 
-**Live:** [your-github-pages-url-here]
-
 ---
 
 I spent time reading through the OAS PM job description carefully before building anything. The role asks for someone who can own competitive intelligence, build financial justification tools for the sales team, and drive a product roadmap from vision through launch. So that's exactly what I tried to show — not with slides or bullet points, but with working software.
@@ -55,30 +53,6 @@ I could have made slides. A competitive analysis deck, a financial model in Exce
 Everything here is built as something a real team could pick up and use. The ROI calculator is the kind of tool I'd want every sales rep to have open before a customer meeting. The competitive dashboard is the kind of thing I'd update quarterly and share before a business review. The roadmap has the detail a cross-functional team actually needs — not just feature names and dates, but the why behind each decision.
 
 The industries are right. The terminology is right. The data sources are real. That's intentional.
-
----
-
-## Stack
-
-Single HTML file. No frameworks, no build process, no dependencies. Vanilla JS, CSS, and a few Google Fonts. Deploys to GitHub Pages in about two minutes.
-
-I kept it simple on purpose. A recruiter or hiring manager shouldn't have to clone a repo, run npm install, and debug a dev server to see the work.
-
----
-
-## Deploy it yourself
-
-```bash
-git clone https://github.com/YOUR_USERNAME/oas-pm-portfolio
-cd oas-pm-portfolio
-# open index.html in a browser — works locally with no setup
-
-# to deploy:
-git add .
-git commit -m "initial deploy"
-git push
-# GitHub repo → Settings → Pages → Branch: main → / (root) → Save
-```
 
 ---
 
